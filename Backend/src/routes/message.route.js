@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express = require("express");
+var auth_middleware_1 = require("../middeleware/auth.middleware");
+var message_controller_1 = require("../controllers/message.controller");
+var router = express.Router();
+router.get('/user', auth_middleware_1.protectRoute, message_controller_1.getUserForSidebar);
+router.get('/:id', auth_middleware_1.protectRoute, message_controller_1.getMessages);
+router.post('/send/:id', auth_middleware_1.protectRoute, message_controller_1.sendMessage);
+exports.default = router;

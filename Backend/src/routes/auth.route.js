@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express = require("express");
+var router = express.Router();
+var auth_controller_1 = require("../controllers/auth.controller");
+var auth_middleware_1 = require("../middeleware/auth.middleware");
+router.post('/signup', auth_controller_1.signup);
+router.post('/login', auth_controller_1.login);
+router.post('/logout', auth_controller_1.logout);
+router.put("/update-profile", auth_middleware_1.protectRoute, auth_controller_1.updateProfile);
+router.get('/check', auth_middleware_1.protectRoute, auth_controller_1.checkAuth);
+exports.default = router;
